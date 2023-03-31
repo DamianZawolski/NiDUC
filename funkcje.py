@@ -2,10 +2,10 @@ import random
 
 kategorie_klas = {
     0: 0.995,
-    1: 0.99,
-    2: 0.97,
-    3: 0.95,
-    4: 0.92
+    1: 0.990,
+    2: 0.970,
+    3: 0.950,
+    4: 0.920
 }
 
 class Kasa:
@@ -19,11 +19,11 @@ class Kasa:
         else:
             self.bezawaryjnosc = 0  # bezawaryjność wynosi 0 jeśli klasa nie istnieje
         Kasa.liczba_id+=1
+        self.w_trakcie_obslugi = False
 
     def wyswietl_cechy(self):
-        print(f"Id: {self.id}\n"
-            f"Kategoria: {self.kategoria}\n"
-              f"Bezawaryjność: {self.bezawaryjnosc}")
+        print(f"Id: {self.id}   |   Kategoria: {self.kategoria}   |"
+              f"    Bezawaryjność: {self.bezawaryjnosc} |   W trakcie obsługi: {self.w_trakcie_obslugi}")
 
 
 def utworz_losowe_kasy(liczba_kas):
@@ -42,6 +42,16 @@ def dodaj_nowe_losowe_kasy(kasy, liczba):
 
     return kasy
 
+def utworz_po_jednej_kasie_z_kategorii():
+    lista_kas = []
+    klucze = list(kategorie_klas.keys())
+    for elem in klucze:
+        lista_kas.append(Kasa(elem))
+    return lista_kas
+
+def dodaj_kase(kasy, kategoria):
+    kasy.append(Kasa(kategoria))
+    return kasy
 def wyswietl_kasy(kasy):
     print("-----------------")
     for elem in kasy:
