@@ -12,22 +12,25 @@ class Klienci:
         self.w_trakcie_obslugi = False
 
     def wyswietl_informacje(self):
-        print(f"Id: {self.id}   |   Czas obsługi: {self.czas_obslugi}   |"
+            print(f"Id: {self.id}   |   Czas obsługi: {self.czas_obslugi}   |"
               f"    W trakcie obsługi: {self.w_trakcie_obslugi}")
+
+    def zmniejsz_czas_obslugi(self):
+        self.czas_obslugi -= 1
 
 
 def utworz_losowych_klientow(liczba_klientow, maksymalny_czas_obslugi):
     # funkcja tworząca wybraną ilość klientów o losowych czasie obsługi
     lista_klientow = []
     for i in range(liczba_klientow):
-        lista_klientow.append(Klienci(random.randint(0, maksymalny_czas_obslugi)))
+        lista_klientow.append(Klienci(random.randint(1, maksymalny_czas_obslugi)))
 
     return lista_klientow
 
 
 def dodaj_nowych_losowych_klientow(lista_klientow, maksymalny_czas_obslugi, liczba_klientow):
     for i in range(liczba_klientow):
-        lista_klientow.append(Klienci(random.randint(0, maksymalny_czas_obslugi)))
+        lista_klientow.append(Klienci(random.randint(1, maksymalny_czas_obslugi)))
 
     return lista_klientow
 

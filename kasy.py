@@ -21,11 +21,15 @@ class Kasa:
         else:
             self.bezawaryjnosc = 0  # bezawaryjność wynosi 0 jeśli klasa nie istnieje
         Kasa.liczba_id += 1
-        self.w_trakcie_obslugi = False
+        self.obslugiwany_klient = None
 
     def wyswietl_informacje(self):
-        print(f"Id: {self.id}   |   Kategoria: {self.kategoria}   |"
-              f"    Bezawaryjność: {self.bezawaryjnosc} |   W trakcie obsługi: {self.w_trakcie_obslugi}")
+        if self.obslugiwany_klient:
+            print(f"Id: {self.id}   |   Kategoria: {self.kategoria}   |"
+                  f"    Bezawaryjność: {self.bezawaryjnosc} |   Obsługiwany klient: {self.obslugiwany_klient.id}")
+        else:
+            print(f"Id: {self.id}   |   Kategoria: {self.kategoria}   |"
+                  f"    Bezawaryjność: {self.bezawaryjnosc} |   Obsługiwany klient: {self.obslugiwany_klient}")
 
 
 def utworz_losowe_kasy(liczba_kas):
