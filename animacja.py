@@ -1,6 +1,6 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, FFMpegWriter
+from matplotlib.animation import FuncAnimation, FFMpegWriter, PillowWriter
 import seaborn as sns
 import numpy as np
 
@@ -41,6 +41,6 @@ def animuj(dane_do_animacji, kasy_kopia, czas_obslugi):
             kasy[elem['id_kasy']].append(elem['czas_obslugi'])
 
     animacja_wyjsciowa = FuncAnimation(fig, animacja, interval=1, save_count=czas_obslugi)
-    plik = r"animacja_symulacji.mp4"
-    gif = FFMpegWriter(fps=1)
+    plik = r"animacja_symulacji.gif"
+    gif = PillowWriter(fps=1)
     animacja_wyjsciowa.save(plik, writer=gif)
