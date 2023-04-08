@@ -14,7 +14,8 @@ class Klienci:
     def wyswietl_informacje(self):
             print(f"Id: {self.id}   |   Czas obsługi: {self.czas_obslugi}   |"
               f"    W trakcie obsługi: {self.w_trakcie_obslugi}")
-
+            return (f"[Id: {self.id} | Czas obsługi: {self.czas_obslugi} |"
+              f" W trakcie obsługi: {self.w_trakcie_obslugi}] ")
     def zmniejsz_czas_obslugi(self):
         self.czas_obslugi -= 1
 
@@ -43,6 +44,8 @@ def dodaj_klienta(lista_klientow, maksymalny_czas_obslugi):
 def wyswietl_klientow(klienci):
     print("-----------------")
     print("Klienci")
+    stan_klientow = ""
     for elem in klienci:
-        elem.wyswietl_informacje()
+        stan_klientow += str(elem.wyswietl_informacje())
     print("-----------------")
+    return stan_klientow

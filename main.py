@@ -1,5 +1,3 @@
-from kasy import *
-from klienci import *
 from symulacja import *
 
 liczba_kas = 5
@@ -14,8 +12,9 @@ kasy = dodaj_kase(kasy, 1)
 wyswietl_kasy(kasy)
 """
 
-liczba_klientow = 7
+liczba_klientow = 70
 maksymalny_czas_obslugi = 5
+opoznienie = 0
 klienci = utworz_losowych_klientow(liczba_klientow, maksymalny_czas_obslugi)
 wyswietl_kasy(klienci)
 """
@@ -24,4 +23,4 @@ wyswietl_kasy(klienci)
 klienci = dodaj_klienta(klienci, 50)
 wyswietl_klientow(klienci)"""
 
-symulacja(kasy, klienci)
+symulacja(kasy, klienci, opoznienie)

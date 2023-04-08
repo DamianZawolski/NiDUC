@@ -27,9 +27,13 @@ class Kasa:
         if self.obslugiwany_klient:
             print(f"Id: {self.id}   |   Kategoria: {self.kategoria}   |"
                   f"    Bezawaryjność: {self.bezawaryjnosc} |   Obsługiwany klient: {self.obslugiwany_klient.id}")
+            return (f"[Id: {self.id} | Kategoria: {self.kategoria} |"
+                    f" Bezawaryjność: {self.bezawaryjnosc} | Obsługiwany klient: {self.obslugiwany_klient.id}] ")
         else:
             print(f"Id: {self.id}   |   Kategoria: {self.kategoria}   |"
                   f"    Bezawaryjność: {self.bezawaryjnosc} |   Obsługiwany klient: {self.obslugiwany_klient}")
+            return (f"[Id: {self.id} | Kategoria: {self.kategoria} |"
+                    f" Bezawaryjność: {self.bezawaryjnosc} | Obsługiwany klient: {self.obslugiwany_klient}] ")
 
 
 def utworz_losowe_kasy(liczba_kas):
@@ -66,6 +70,22 @@ def dodaj_kase(kasy, kategoria):
 def wyswietl_kasy(kasy):
     print("-----------------")
     print("Kasy")
+    stan_kas = ""
     for elem in kasy:
-        elem.wyswietl_informacje()
+        stan_kas += str(elem.wyswietl_informacje())
     print("-----------------")
+    return stan_kas
+
+
+def informacje_do_animacji(kasy, klienci):
+    dane = []
+    for kasa in kasy:
+        if kasa.obslugiwany_klient is None:
+            dane.append({"id_kasy": kasa.id, "czas_obslugi": 0})
+        else:
+            for klient in klienci:
+                if klient.id == kasa.obslugiwany_klient.id:
+                    dane.append({"id_kasy": kasa.id, "czas_obslugi": klient.czas_obslugi})
+                    break
+    print(dane)
+    return dane
