@@ -8,14 +8,21 @@ class Klienci:
     def __init__(self, czas_obslugi=100):
         self.id = Klienci.liczba_id
         self.czas_obslugi = czas_obslugi
+        self.obslugiwany_przez_kase = None
         Klienci.liczba_id += 1
-        self.w_trakcie_obslugi = False
 
     def wyswietl_informacje(self):
-            print(f"Id: {self.id}   |   Czas obsługi: {self.czas_obslugi}   |"
-              f"    W trakcie obsługi: {self.w_trakcie_obslugi}")
-            return (f"[Id: {self.id} | Czas obsługi: {self.czas_obslugi} |"
-              f" W trakcie obsługi: {self.w_trakcie_obslugi}] ")
+        if self.obslugiwany_przez_kase:
+            print(f"Id: {self.id}   |   Czas obsługi: {self.czas_obslugi}   |   Obsługiwany przez kasę: "
+                  f"{self.obslugiwany_przez_kase.id} ")
+            return (f"[Id: {self.id} | Czas obsługi: {self.czas_obslugi} | Obsługiwany przez kasę: "
+                    f"{self.obslugiwany_przez_kase.id} ")
+        else:
+            print(f"Id: {self.id}   |   Czas obsługi: {self.czas_obslugi}   |   Obsługiwany przez kasę: "
+                  f"{self.obslugiwany_przez_kase} ")
+            return (f"[Id: {self.id} | Czas obsługi: {self.czas_obslugi} | Obsługiwany przez kasę: "
+                    f"{self.obslugiwany_przez_kase} ")
+
     def zmniejsz_czas_obslugi(self):
         self.czas_obslugi -= 1
 

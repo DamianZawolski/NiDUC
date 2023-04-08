@@ -22,18 +22,24 @@ class Kasa:
             self.bezawaryjnosc = 0  # bezawaryjność wynosi 0 jeśli klasa nie istnieje
         Kasa.liczba_id += 1
         self.obslugiwany_klient = None
+        self.uszkodzona = False
+        self.czas_naprawy = None
 
     def wyswietl_informacje(self):
         if self.obslugiwany_klient:
             print(f"Id: {self.id}   |   Kategoria: {self.kategoria}   |"
-                  f"    Bezawaryjność: {self.bezawaryjnosc} |   Obsługiwany klient: {self.obslugiwany_klient.id}")
+                  f"    Bezawaryjność: {self.bezawaryjnosc} | Uszkodzona: {self.uszkodzona} |"
+                  f"   |    Czas naprawy: {self.czas_naprawy}   |   Obsługiwany klient: {self.obslugiwany_klient.id}")
             return (f"[Id: {self.id} | Kategoria: {self.kategoria} |"
-                    f" Bezawaryjność: {self.bezawaryjnosc} | Obsługiwany klient: {self.obslugiwany_klient.id}] ")
+                    f" Bezawaryjność: {self.bezawaryjnosc} | Uszkodzona: {self.uszkodzona} | "
+                    f"Czas naprawy: {self.czas_naprawy} | Obsługiwany klient: {self.obslugiwany_klient.id}] ")
         else:
             print(f"Id: {self.id}   |   Kategoria: {self.kategoria}   |"
-                  f"    Bezawaryjność: {self.bezawaryjnosc} |   Obsługiwany klient: {self.obslugiwany_klient}")
+                  f"    Bezawaryjność: {self.bezawaryjnosc} | Uszkodzona: {self.uszkodzona} |"
+                  f"   |    Czas naprawy: {self.czas_naprawy}   |   Obsługiwany klient: {self.obslugiwany_klient}")
             return (f"[Id: {self.id} | Kategoria: {self.kategoria} |"
-                    f" Bezawaryjność: {self.bezawaryjnosc} | Obsługiwany klient: {self.obslugiwany_klient}] ")
+                    f" Bezawaryjność: {self.bezawaryjnosc} | Uszkodzona: {self.uszkodzona} |"
+                    f" Czas naprawy: {self.czas_naprawy} | Obsługiwany klient: {self.obslugiwany_klient}] ")
 
 
 def utworz_losowe_kasy(liczba_kas):
@@ -89,3 +95,11 @@ def informacje_do_animacji(kasy, klienci):
                     break
     print(dane)
     return dane
+
+
+def stan_uszkodzen(kasy):
+    uszkodzenia = []
+    for kasa in kasy:
+        uszkodzenia.append(kasa.uszkodzona)
+
+    return uszkodzenia
