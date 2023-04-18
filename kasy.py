@@ -103,3 +103,18 @@ def stan_uszkodzen(kasy):
         uszkodzenia.append(kasa.uszkodzona)
 
     return uszkodzenia
+
+def dodaj_opoznienia(kasy):
+    uszkodzone = 0
+    for kasa in kasy:
+        if kasa.uszkodzona == True:
+            uszkodzone += 1
+
+    return uszkodzone
+
+def zwroc_obslugiwanych_klientow(klienci):
+    lista_klientow = []
+    for klient in klienci:
+        lista_klientow.append(klient.id)
+
+    return lista_klientow

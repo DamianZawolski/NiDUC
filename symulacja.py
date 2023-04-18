@@ -4,13 +4,13 @@ from time import sleep
 from animacja import *
 
 
-def sprawdz_uszkodzenia(kasy):
+def sprawdz_uszkodzenia(kasy, minimalny_czas_awarii, maksymalny_czas_awarii):
     for kasa in kasy:
         if not kasa.uszkodzona:
             losowa = random.randint(0, 1000) / 1000
             if losowa > kasa.bezawaryjnosc:
                 kasa.uszkodzona = True
-                kasa.czas_naprawy = random.randint(5, 10)
+                kasa.czas_naprawy = random.randint(minimalny_czas_awarii, maksymalny_czas_awarii)
         else:
             kasa.czas_naprawy -= 1
             if kasa.czas_naprawy == 0:
@@ -48,7 +48,7 @@ def sprawdz_czy_obsluzeni(kasy, klienci_obslugiwani, klienci_obsluzeni):
                     kasa.obslugiwany_klient = None
 
 
-def symulacja(kasy, klienci, opoznienie):
+def symulacja(kasy, klienci, opoznienie, minimalny_czas_awarii, maksymalny_czas_awarii):
     kasy_kopia = []
     for kasa in kasy:
         kasy_kopia.append(kasa)
@@ -64,6 +64,7 @@ def symulacja(kasy, klienci, opoznienie):
     plik = open("przebieg_symulacji.txt", "w")
     iteracja = 0
     dane_do_animacji = []
+    opoznienia_iteracja = 0
     while klienci_nieobsluzeni or klienci_obslugiwani:
         sleep(opoznienie)
         iteracja += 1
@@ -75,10 +76,12 @@ def symulacja(kasy, klienci, opoznienie):
         aktualizuj_czas_obslugi(klienci_obslugiwani)
 
         sprawdz_czy_obsluzeni(kasy, klienci_obslugiwani, klienci_obsluzeni)
-        sprawdz_uszkodzenia(kasy)
+        sprawdz_uszkodzenia(kasy, minimalny_czas_awarii, maksymalny_czas_awarii)
+        klienci_iteracja = zwroc_obslugiwanych_klientow(klienci_obslugiwani)
         animacja_iteracja = informacje_do_animacji(kasy_kopia, klienci_kopia)
         uszkodzenia_iteracja = stan_uszkodzen(kasy_kopia)
-        dane_do_animacji.append([uszkodzenia_iteracja, animacja_iteracja])
+        opoznienia_iteracja += dodaj_opoznienia(kasy_kopia)
+        dane_do_animacji.append([uszkodzenia_iteracja, animacja_iteracja, opoznienia_iteracja, klienci_iteracja])
         plik.write(f"Iteracja {str(iteracja)} Kasy: {str(stan_kas)}     Klienci {str(stan_klientow)}\n")
     print(f"Wszyscy klienci zostali obsłużeni w czasie {czas_obslugi}")
     plik.write(f"Wszyscy klienci zostali obsłużeni w czasie {czas_obslugi}")
