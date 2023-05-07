@@ -18,6 +18,7 @@ opoznienie = 0
 minimalny_czas_awarii = 5
 maksymalny_czas_awarii = 10
 klienci = utworz_losowych_klientow(liczba_klientow, maksymalny_czas_obslugi)
+tryb_kolejkowy = False
 wyswietl_kasy(klienci)
 """
 klienci = dodaj_nowych_losowych_klientow(klienci, maksymalny_czas_obslugi, 10)
@@ -25,4 +26,4 @@ wyswietl_kasy(klienci)
 klienci = dodaj_klienta(klienci, 50)
 wyswietl_klientow(klienci)"""
 
-symulacja(kasy, klienci, opoznienie, minimalny_czas_awarii, maksymalny_czas_awarii)
+symulacja(kasy, klienci, opoznienie, minimalny_czas_awarii, maksymalny_czas_awarii, tryb_kolejkowy)

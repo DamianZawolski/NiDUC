@@ -62,7 +62,7 @@ def animuj(dane_do_animacji, kasy_kopia, czas_obslugi):
         uszkodzenia.append(dane_uszkodzenia)
         opoznienia.append(dane_opoznienia)
         klienci_iteracja.append(dane_klienci)
-    animacja_wyjsciowa = FuncAnimation(fig, animacja, interval=1, save_count=czas_obslugi)
+    animacja_wyjsciowa = FuncAnimation(fig, animacja, interval=0.7, save_count=czas_obslugi)
     plik = r"animacja_symulacji.gif"
     gif = PillowWriter(fps=1)
     animacja_wyjsciowa.save(plik, writer=gif)

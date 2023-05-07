@@ -8,7 +8,6 @@ kategorie_klas = {
     4: 0.920
 }
 
-
 class Kasa:
     # klasa którą tworzymy obiekty kas
     liczba_id = 0
@@ -24,6 +23,13 @@ class Kasa:
         self.obslugiwany_klient = None
         self.uszkodzona = False
         self.czas_naprawy = None
+        self.przydzieleni_klienci = []
+
+    def zwroc_laczny_czas_obslugi_klientow(self):
+        czas = 0
+        for klient in self.przydzieleni_klienci:
+            czas += klient.czas_obslugi
+        return czas
 
     def wyswietl_informacje(self):
         if self.obslugiwany_klient:
@@ -118,3 +124,10 @@ def zwroc_obslugiwanych_klientow(klienci):
         lista_klientow.append(klient.id)
 
     return lista_klientow
+
+def pozostala_kolejka(kasy):
+    for kasa in kasy:
+        print("Kasa ",kasa.id,": ", end='')
+        for klient in kasa.przydzieleni_klienci:
+            print(klient.id," ", end='')
+        print()
