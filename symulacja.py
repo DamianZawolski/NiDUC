@@ -29,6 +29,7 @@ def przypisz_klientow_do_kas(kasy, klienci_nieobsluzeni, klienci_obslugiwani):
 
     return kasy, klienci_nieobsluzeni, klienci_obslugiwani
 
+
 def przypisz_klientow_do_kas_z_kolejki(kasy, klienci_nieobsluzeni, klienci_obslugiwani):
     if klienci_nieobsluzeni:
         for kasa in kasy:
@@ -43,12 +44,15 @@ def przypisz_klientow_do_kas_z_kolejki(kasy, klienci_nieobsluzeni, klienci_obslu
                     kasa.przydzieleni_klienci.pop(0)
 
     return kasy, klienci_nieobsluzeni, klienci_obslugiwani
+
+
 def aktualizuj_czas_obslugi(klienci_obslugiwani):
     for klient in klienci_obslugiwani:
         if not klient.obslugiwany_przez_kase.uszkodzona:
             klient.zmniejsz_czas_obslugi()
 
     return klienci_obslugiwani
+
 
 def sprawdz_czy_obsluzeni(kasy, klienci_obslugiwani, klienci_obsluzeni):
     for klient in klienci_obslugiwani:
@@ -94,8 +98,9 @@ def symulacja(kasy, klienci, opoznienie, minimalny_czas_awarii, maksymalny_czas_
             sleep(opoznienie)
             iteracja += 1
             czas_obslugi += 1
-            kasy, klienci_nieobsluzeni, klienci_obslugiwani = przypisz_klientow_do_kas_z_kolejki(kasy, klienci_nieobsluzeni,
-                                                                                       klienci_obslugiwani)
+            kasy, klienci_nieobsluzeni, klienci_obslugiwani = przypisz_klientow_do_kas_z_kolejki(kasy,
+                                                                                                 klienci_nieobsluzeni,
+                                                                                                 klienci_obslugiwani)
             stan_kas = wyswietl_kasy(kasy)
             stan_klientow = wyswietl_klientow(klienci)
             aktualizuj_czas_obslugi(klienci_obslugiwani)

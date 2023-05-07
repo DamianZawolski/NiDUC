@@ -26,6 +26,7 @@ class Klienci:
     def zmniejsz_czas_obslugi(self):
         self.czas_obslugi -= 1
 
+
 def utworz_losowych_klientow(liczba_klientow, maksymalny_czas_obslugi):
     # funkcja tworząca wybraną ilość klientów o losowych czasie obsługi
     lista_klientow = []

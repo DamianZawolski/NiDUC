@@ -8,6 +8,7 @@ kategorie_klas = {
     4: 0.920
 }
 
+
 class Kasa:
     # klasa którą tworzymy obiekty kas
     liczba_id = 0
@@ -110,13 +111,15 @@ def stan_uszkodzen(kasy):
 
     return uszkodzenia
 
+
 def dodaj_opoznienia(kasy):
     uszkodzone = 0
     for kasa in kasy:
-        if kasa.uszkodzona == True:
+        if kasa.uszkodzona:
             uszkodzone += 1
 
     return uszkodzone
+
 
 def zwroc_obslugiwanych_klientow(klienci):
     lista_klientow = []
@@ -125,9 +128,10 @@ def zwroc_obslugiwanych_klientow(klienci):
 
     return lista_klientow
 
+
 def pozostala_kolejka(kasy):
     for kasa in kasy:
-        print("Kasa ",kasa.id,": ", end='')
+        print("Kasa ", kasa.id, ": ", end='')
         for klient in kasa.przydzieleni_klienci:
-            print(klient.id," ", end='')
+            print(klient.id, " ", end='')
         print()
